@@ -1,0 +1,14 @@
+<!-- templates/predict.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Predict Disease</h2>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="symptoms" rows="4" cols="50" placeholder="Enter symptoms..."></textarea><br><br>
+    <button type="submit">Predict</button>
+</form>
+
+{% if prediction %}
+    <h3>Predicted Condition: {{ prediction }}</h3>
+{% endif %}
+{% endblock %}

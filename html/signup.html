@@ -1,0 +1,103 @@
+{% load static %}
+{% load compress static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Load Bootstrap CSS -->
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Load Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background */
+            color: #343a40; /* Dark text */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #007bff; /* Blue color for the heading */
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #007bff; /* Blue border */
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        .checkbox-group label {
+            margin-right: 10px;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Signup</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password1" placeholder="Password" required><br>
+        <input type="password" name="password2" placeholder="Confirm Password" required><br>
+        <input type="number" name="age" placeholder="Age" required><br>
+         <input type="number" name="weight" placeholder="Weight" required><br>
+        <select name="blood_group" required>
+            <option value="" disabled selected>Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+        <input type="text" name="blood_pressure" placeholder="Blood Pressure (e.g., 120/80)" required><br>
+        
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="past_medical_history" value="yes"> I have past medical history</label>
+        </div>
+        
+        <button type="submit">Signup</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+    {% for message in messages %}
+        <script>
+            Swal.fire("{{ message }}");
+        </script>
+    {% endfor %}
+</body>
+</html>
