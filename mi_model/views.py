@@ -43,19 +43,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .model_loader import predict_condition  # Make sure this path is correct
+from .model_loader import predict_condition 
 
 
-# 1️⃣ - This handles the form in services.html
-# def classify_condition(request):
-#     prediction = None
-#     if request.method == 'POST':
-#         user_input = request.POST.get('user_input', '')
-#         if user_input:
-#             prediction = predict_condition(user_input)
 
-#     # Renders the same services.html with prediction result
-#     return render(request, 'services.html', {'prediction': prediction})
 def classify_condition(request):
     prediction = None
     if request.method == 'POST':
@@ -69,7 +60,7 @@ def classify_condition(request):
 
 
 
-# 2️⃣ - Optional: Keep this if you're using an API endpoint via JSON
+
 @csrf_exempt
 def classify_condition_api(request):
     if request.method == "POST":
